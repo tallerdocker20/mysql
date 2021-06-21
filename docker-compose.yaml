@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  mysql-db:  # new
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
+    tty: true
+    restart: always
+    container_name: mysql_serve
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test_db
+      - MYSQL_USER=docker
+      - MYSQL_PASSWORD=docker
+    volumes:
+      - "./_data:/var/lib/mysql/"
